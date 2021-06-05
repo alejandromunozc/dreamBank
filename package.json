@@ -1,0 +1,11 @@
+{
+    "name": "dreambank",
+    "version": "0.1.0",
+    "description": "Thecnical test for Ecosystems",
+    "main": "app.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "alejandromunozc",
+    "license": "MIT"
+}
