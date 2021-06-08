@@ -61,6 +61,12 @@ export const averageAccountTransaction = async(accountId:string, initialDate:Dat
         account: new mongoose.Types.ObjectId(accountId),
         createdAt: {$gte: initialDate, $lte: finalDate}
       }
+    },
+    {
+      $group: {
+        _id: accountId,
+        averageAmount: {$avg: '$amount'}
+      }
     }
   ])
 

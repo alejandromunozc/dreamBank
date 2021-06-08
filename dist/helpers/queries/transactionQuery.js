@@ -73,6 +73,12 @@ const averageAccountTransaction = (accountId, initialDate, finalDate) => __await
                 account: new mongoose_1.default.Types.ObjectId(accountId),
                 createdAt: { $gte: initialDate, $lte: finalDate }
             }
+        },
+        {
+            $group: {
+                _id: accountId,
+                averageAmount: { $avg: '$amount' }
+            }
         }
     ]);
 });
