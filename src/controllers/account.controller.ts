@@ -12,7 +12,7 @@ export const getAccounts = async(req:Request, res:Response) => {
 }
 
 export const createAccount = async(req:Request, res:Response) => {
-  const { id, name } = req.body;
-  const newAccount = await createUserAccount(id, name);
+  const { id, name, typeAccount } = req.body;
+  const newAccount = await createUserAccount(id, name, typeAccount);
   res.json(newAccount);
 }

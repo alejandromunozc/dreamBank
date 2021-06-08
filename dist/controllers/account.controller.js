@@ -18,8 +18,8 @@ const getAccounts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getAccounts = getAccounts;
 const createAccount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, name } = req.body;
-    const newAccount = yield accountQuery_1.createUserAccount(id, name);
+    const { id, name, typeAccount } = req.body;
+    const newAccount = yield accountQuery_1.createUserAccount(id, name, typeAccount);
     res.json(newAccount);
 });
 exports.createAccount = createAccount;
