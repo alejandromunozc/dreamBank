@@ -9,4 +9,5 @@ exports.config = {
     dbHost: process.env.DB_HOST,
     dbName: process.env.DB_NAME,
     secret: process.env.SECRET,
+    taxes: process.env.TAXES || 1.19
 };

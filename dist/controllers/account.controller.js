@@ -9,20 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.jwtAuth = void 0;
-const passport_jwt_1 = require("passport-jwt");
-const passport_1 = require("passport");
-const config_1 = require("../config/config");
-const userQuery_1 = require("../helpers/queries/userQuery");
-const opts = {
-    jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config_1.config.secret
-};
-exports.default = new passport_jwt_1.Strategy(opts, (payload, done) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield userQuery_1.findUser(payload.identification);
-    if (user) {
-        return done(null, user);
-    }
-    return done(null, false);
-}));
-exports.jwtAuth = passport_1.authenticate('jwt', { session: false });
+exports.createAccount = exports.getAccounts = void 0;
+const accountQuery_1 = require("../helpers/queries/accountQuery");
+const getAccounts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const userAccounts = yield accountQuery_1.getUserAccounts(id);
+    res.json(userAccounts);
+});
+exports.getAccounts = getAccounts;
+const createAccount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id, name } = req.body;
+    const newAccount = yield accountQuery_1.createUserAccount(id, name);
+    res.json(newAccount);
+});
+exports.createAccount = createAccount;

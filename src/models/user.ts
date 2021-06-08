@@ -5,8 +5,6 @@ export interface IUser extends Document {
   name:string,
   identification:number,
   password:string,
-  bankAccount?:string[],
-  products?:string[],
   encryptPass: (password:string) => Promise<string>,
   matchPass: (password: string) => Promise<Boolean>
 }
@@ -14,9 +12,7 @@ export interface IUser extends Document {
 const userSchema = new Schema<IUser>({
   name:{},
   identification:{},
-  password:{},
-  bankAccount:{},
-  products:{}
+  password:{}
 }, {
   timestamps: true
 });

@@ -17,9 +17,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const userSchema = new mongoose_1.Schema({
     name: {},
     identification: {},
-    password: {},
-    bankAccount: {},
-    products: {}
+    password: {}
 }, {
     timestamps: true
 });

@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import passport from 'passport';
+import { jwtAuth } from '../middlewares/passport'
+import { createAccount, getAccounts } from '../controllers/account.controller';
 const router = Router();
 
-
-router.get('/account', passport.authenticate('jwt', {session:false}), (req, res) => {
-  res.send('Hola Account');
-})
+router.get('/account/:id', jwtAuth, getAccounts);
+router.post('/account/', jwtAuth, createAccount);
 
 export default router;

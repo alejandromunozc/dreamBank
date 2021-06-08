@@ -23,8 +23,10 @@ export const userLogin = async(user:IUser):Promise<{}> => {
   const passMatch = new User(userExists)
   const isMatch = await passMatch.matchPass(user.password);
 
+  const {_id, name, identification} = userExists;
+
   if(isMatch){
-    return {token: createToken(user)}
+    return {token: createToken(user), _id, name, identification }
   }
 
   return {Error: 'Identification or Password are incorrect'}
@@ -32,4 +34,25 @@ export const userLogin = async(user:IUser):Promise<{}> => {
 
 export const findUser = async(identification:number) => {
   return await User.findOne({identification});
+}
+
+export const updateUser = async(data:IUser) => {
+  let user:IUser = await User.findById({_id: data.id}) || data;
+
+  if(data.name){
+    user.name = data.name;
+  }
+
+  await User.findByIdAndUpdate(data.id, {$set: user});
+
+  return user;
+}
+
+export const addAccountToUser = async(userId:string, accountId:string) => {
+  try {
+    await User.findByIdAndUpdate(userId, {$push: {bankAccount: accountId}});
+    return {msg: 'User account updated'};
+  } catch (error) {
+    return {'error': error};
+  }
 }

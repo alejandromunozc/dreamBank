@@ -1,4 +1,5 @@
-import {Strategy, ExtractJwt, StrategyOptions} from 'passport-jwt';
+import { Strategy, ExtractJwt, StrategyOptions } from 'passport-jwt';
+import { authenticate } from 'passport'
 import { config } from '../config/config';
 import { findUser } from '../helpers/queries/userQuery';
 
@@ -13,4 +14,6 @@ export default new Strategy(opts, async(payload, done) => {
     return done(null, user);
   }
   return done(null, false);
-})
+});
+
+export const jwtAuth = authenticate('jwt', {session:false});

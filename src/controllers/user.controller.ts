@@ -1,6 +1,5 @@
 import {Request, Response} from 'express';
 import { newUserRegister, userLogin } from '../helpers/queries/userQuery';
-import User, {IUser} from '../models/user'
 
 export const login = async(req:Request, res:Response) => {
   if(!req.body.identification || !req.body.password){
