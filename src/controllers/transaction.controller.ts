@@ -1,6 +1,10 @@
 import {Request, Response} from 'express';
-import Transaction from '../models/transaction';
-import { averageAccountTransaction, createAccountTransaction, getAccountTransactionDetail, getAccountTransactions } from '../helpers/queries/transactionQuery';
+import {
+  averageAccountTransaction,
+  createAccountTransaction,
+  getAccountTransactionDetail,
+  getAccountTransactions
+} from '../helpers/queries/transactionQuery';
 
 export const getTransactions = async(req:Request, res:Response) => {
   const { id } = req.params;

@@ -20,37 +20,57 @@ const newUserRegister = (user) => __awaiter(void 0, void 0, void 0, function* ()
     if (userExists) {
         return { msg: 'User already exists' };
     }
-    const newUser = new user_1.default(user);
-    newUser.password = yield newUser.encryptPass(user.password);
-    yield newUser.save();
-    return newUser;
+    try {
+        const newUser = new user_1.default(user);
+        newUser.password = yield newUser.encryptPass(user.password);
+        yield newUser.save();
+        return newUser;
+    }
+    catch (error) {
+        return { 'error': error };
+    }
 });
 exports.newUserRegister = newUserRegister;
 const userLogin = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    const userExists = yield user_1.default.findOne({ identification: user.identification });
-    if (!userExists) {
-        return { msg: 'User not exists' };
-    }
-    const passMatch = new user_1.default(userExists);
-    const isMatch = yield passMatch.matchPass(user.password);
-    const { _id, name, identification } = userExists;
-    if (isMatch) {
+    try {
+        const userExists = yield user_1.default.findOne({ identification: user.identification });
+        if (!userExists) {
+            return { msg: 'User not exists' };
+        }
+        const passMatch = new user_1.default(userExists);
+        const isMatch = yield passMatch.matchPass(user.password);
+        const { _id, name, identification } = userExists;
+        if (!isMatch) {
+            return { Error: 'Identification or Password are incorrect' };
+        }
         return { token: jwt_1.createToken(user), _id, name, identification };
     }
-    return { Error: 'Identification or Password are incorrect' };
+    catch (error) {
+        return { 'error': error };
+    }
 });
 exports.userLogin = userLogin;
 const findUser = (identification) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield user_1.default.findOne({ identification });
+    try {
+        return yield user_1.default.findOne({ identification });
+    }
+    catch (error) {
+        return { 'error': error };
+    }
 });
 exports.findUser = findUser;
 const updateUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    let user = (yield user_1.default.findById({ _id: data.id })) || data;
-    if (data.name) {
-        user.name = data.name;
+    try {
+        const user = (yield user_1.default.findById({ _id: data.id })) || data;
+        if (data.name) {
+            user.name = data.name;
+        }
+        yield user_1.default.findByIdAndUpdate(data.id, { $set: user });
+        return user;
     }
-    yield user_1.default.findByIdAndUpdate(data.id, { $set: user });
-    return user;
+    catch (error) {
+        return { 'error': error };
+    }
 });
 exports.updateUser = updateUser;
 const addAccountToUser = (userId, accountId) => __awaiter(void 0, void 0, void 0, function* () {

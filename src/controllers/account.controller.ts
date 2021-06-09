@@ -1,9 +1,5 @@
 import {Request, Response} from 'express';
 import { getUserAccounts, createUserAccount } from '../helpers/queries/accountQuery';
-import account from '../models/account';
-import mongoose from 'mongoose';
-import { Schema, ObjectId } from 'mongoose';
-
 
 export const getAccounts = async(req:Request, res:Response) => {
   const { id } = req.params;
