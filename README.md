@@ -6,6 +6,7 @@ In Dream Bank you will be able to manage all your bank accounts, view your trans
 
 - API: [https://dreambank-ecosystems.herokuapp.com/](https://dreambank-ecosystems.herokuapp.com/)
 - Repositorie: [https://github.com/alejandromunozc/dreamBank](https://github.com/alejandromunozc/dreamBank)
+- Postman Collection: [https://www.postman.com/collections/9433c3a3c6ff7b3370ce](https://www.postman.com/collections/9433c3a3c6ff7b3370ce)
 
 ## ⚙️ Execution
 
