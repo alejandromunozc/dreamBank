@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import cors from 'cors';
 import passport from 'passport';
 import passportMidle from './middlewares/passport';
@@ -18,6 +18,10 @@ app.use(accountRoutes);
 app.use(transactionRoutes);
 
 passport.use(passportMidle);
+
+app.get('/', (req:Request, res:Response) => {
+  res.send('Welcome to Dream Bank API, please go to the repository on Github for documentation: https://github.com/alejandromunozc/dreamBank');
+})
 
 app.listen(config.port, () => {
   console.log(`listening http://localhost:${config.port}`);
