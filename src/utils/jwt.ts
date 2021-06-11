@@ -1,5 +1,5 @@
-import {IUser} from '../models/user'
 import jwt from 'jsonwebtoken';
+import {IUser} from '../models/user'
 import {config} from '../config/config'
 
 export const createToken = (user:IUser):string => {

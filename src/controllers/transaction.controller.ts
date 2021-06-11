@@ -4,7 +4,7 @@ import {
   createAccountTransaction,
   getAccountTransactionDetail,
   getAccountTransactions
-} from '../helpers/queries/transactionQuery';
+} from '../utils/queries/transactionQuery';
 
 export const getTransactions = async(req:Request, res:Response) => {
   const { id } = req.params;

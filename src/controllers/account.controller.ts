@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import { getUserAccounts, createUserAccount } from '../helpers/queries/accountQuery';
+import { getUserAccounts, createUserAccount } from '../utils/queries/accountQuery';
 
 export const getAccounts = async(req:Request, res:Response) => {
   const { id } = req.params;

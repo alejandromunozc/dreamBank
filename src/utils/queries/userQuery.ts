@@ -1,7 +1,6 @@
 import User, {IUser} from '../../models/user';
 import { createToken } from '../jwt';
 
-
 export const newUserRegister = async(user:IUser):Promise<{}> => {
   const userExists = await User.findOne({identification: user.identification});
   if(userExists){
